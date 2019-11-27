@@ -1,5 +1,6 @@
 require 'sinatra/base'
 require_relative 'lib/player'
+require_relative 'lib/game'
 
 class Battle < Sinatra::Base
   enable :sessions
@@ -16,8 +17,7 @@ class Battle < Sinatra::Base
   end
 
   get '/play' do
-    @player_1 = session[:game].player1
-    @player_2 = session[:game].player2
+    @game = session[:game]
     @message = session.delete(:message)
     erb :play
   end

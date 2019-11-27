@@ -8,14 +8,25 @@ describe 'play page', type: :feature do
     expect(page).to have_content("Bob vs. Mandy")
   end
 
+  it 'should display player 1s turn' do
+    expect(page).to have_content("turn: Bob")
+  end
+
+  it "should display players 1's health" do
+    expect(page).to have_content("Bob: 100/100 hp")
+  end
+
   it "should display players 2's health" do
-    expect(page).to have_content("player 2: 100/100 hp")
+    expect(page).to have_content("Mandy: 100/100 hp")
   end
 
   context 'Having attacked' do
-
     before do
       click_button 'Attack'
+    end
+
+    it "should change turn to player two" do
+      expect(page).to have_content "turn: Mandy"
     end
 
     it "should allow player 1 to attack player 2" do
@@ -28,10 +39,17 @@ describe 'play page', type: :feature do
     end
 
     it 'should decrease player 2 health' do
-      expect(page).to have_content("player 2: 90/100 hp")
+      expect(page).to have_content("Mandy: 90/100 hp")
     end
 
+    context 'Having attacked again' do
+      before do
+        click_button 'Attack'
+      end
+
+      it 'should decrease player one health' do
+        expect(page).to have_content("Bob: 90/100 hp")
+      end
+    end
   end
-
-
 end

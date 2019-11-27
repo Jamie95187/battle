@@ -9,21 +9,22 @@ class Battle < Sinatra::Base
   end
 
   post '/names' do
-    session[:player1] = Player.new params["player 1"]
-    session[:player2] = Player.new params["player 2"]
+    player1 = Player.new params["player 1"]
+    player2 = Player.new params["player 2"]
+    session[:game] = Game.new(player1, player2)
     redirect to '/play'
   end
 
   get '/play' do
-    @player_1 = session[:player1]
-    @player_2 = session[:player2]
+    @player_1 = session[:game].player1
+    @player_2 = session[:game].player2
     @message = session.delete(:message)
     erb :play
   end
 
   post '/attack' do
     session[:message] = "Successful attack!"
-    session[:player2].reduce_health(10)
+    session[:game].attack
     redirect to '/play'
   end
 

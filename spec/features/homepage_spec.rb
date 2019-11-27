@@ -7,5 +7,4 @@ describe 'homepage', type: :feature do
   it 'should check that the homepage works' do
     expect(page).to have_content("Battle Home Page")
   end
-
 end

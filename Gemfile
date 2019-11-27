@@ -1,3 +1,4 @@
 ruby '2.6.3'
 gem 'rspec'
 gem 'sinatra'
+gem 'capybara'

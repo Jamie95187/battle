@@ -23,6 +23,7 @@ class Battle < Sinatra::Base
 
   post '/attack' do
     session[:message] = "Successful attack!"
+    session[:player2].reduce_health(10)
     redirect to '/play'
   end
 

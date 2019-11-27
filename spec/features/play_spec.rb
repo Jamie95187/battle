@@ -9,17 +9,29 @@ describe 'play page', type: :feature do
   end
 
   it "should display players 2's health" do
-    expect(page).to have_content("player 2: 100 hp")
+    expect(page).to have_content("player 2: 100/100 hp")
   end
 
-  it "should allow player 1 to attack player 2" do
-    click_button 'Attack'
-    expect(page).to have_content("Successful attack!")
+  context 'Having attacked' do
+
+    before do
+      click_button 'Attack'
+    end
+
+    it "should allow player 1 to attack player 2" do
+      expect(page).to have_content("Successful attack!")
+    end
+
+    it "should remove message on refresh" do
+      visit '/play'
+      expect(page).to_not have_content("Successful attack!")
+    end
+
+    it 'should decrease player 2 health' do
+      expect(page).to have_content("player 2: 90/100 hp")
+    end
+
   end
 
-  it "should remove message on refresh" do
-    click_button 'Attack'
-    visit '/play'
-    expect(page).to_not have_content("Successful attack!")
-  end
+
 end

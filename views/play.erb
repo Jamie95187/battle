@@ -1,6 +1,6 @@
 <h2><%=@player_1.name %> vs. <%=@player_2.name%></h2>
 <p><%=@message%></p>
-player 2: 100 hp
+player 2: <%=@player_2.hp%>/100 hp
 
 <form action='/attack' method='post'>
   <input type='submit' value='Attack'>

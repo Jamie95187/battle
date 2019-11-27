@@ -13,6 +13,7 @@
 # it.
 #
 require_relative '../app'
+require_relative './features/web_helpers'
 require 'capybara'
 require 'capybara/rspec'
 require 'rspec'

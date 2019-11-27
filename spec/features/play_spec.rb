@@ -1,10 +1,7 @@
 describe 'play page', type: :feature do
 
   before do
-    visit '/'
-    fill_in 'player 1', with: "Bob"
-    fill_in 'player 2', with: "Mandy"
-    click_button 'Submit'
+    sign_in_and_play('Bob', 'Mandy')
   end
 
   it 'should display the players names' do

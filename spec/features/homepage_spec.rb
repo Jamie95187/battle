@@ -10,7 +10,8 @@ describe 'homepage', type: :feature do
 
   it 'should allow user to input name into a form' do
     fill_in 'player 1', with: "Bob"
+    fill_in 'player 2', with: "Mandy"
     click_button 'Submit'
-    expect(page).to have_content("Bob")
+    expect(page).to have_content("Bob vs. Mandy")
   end
 end
